@@ -7,7 +7,7 @@ located @
 /*----- configuration settings -----*/
 server {
     listen 80;
-    server_name pup-chief-mudfish.ngrok-free.app;
+    server_name <your-public-domain>;
 
     location / {
         proxy_pass http://127.0.0.1:5000;  # Forward requests to Flask app
