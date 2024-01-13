@@ -1,0 +1,27 @@
+/*----- Simple python script to request OAuth token -----*/
+
+import requests
+
+def get_oauth_token(client_id, client_secret):
+    url = 'https://id.twitch.tv/oauth2/token'
+    payload = {
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'grant_type': 'client_credentials'
+    }
+    response = requests.post(url, data=payload)
+    if response.status_code == 200:
+        return response.json()['access_token']
+    else:
+        return None
+
+# Replace with your actual Client ID and Client Secret
+client_id = '<twitch user_id>'
+client_secret = '<twitch app client secret>'
+
+token = get_oauth_token(client_id, client_secret)
+if token:
+    print("OAuth Token:", token)
+else:
+    print("Failed to get token")
+/*----- End of OAuth script -----*/
