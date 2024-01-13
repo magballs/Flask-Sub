@@ -16,7 +16,7 @@ def get_oauth_token(client_id, client_secret):
         return None
 
 # Replace with your actual Client ID and Client Secret
-client_id = '<twitch user_id>'
+client_id = '<twitch user_id or app client id>' # tested it obtaining a token with app client id
 client_secret = '<twitch app client secret>'
 
 token = get_oauth_token(client_id, client_secret)
