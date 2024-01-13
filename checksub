@@ -1,0 +1,28 @@
+/*----- simple cURL command to check subscriptions -----*/
+
+    curl -H 'Client-ID: <client_id>' -H 'Authorization: Bearer <auth_token>' -X GET 'https://api.twitch.tv/helix/eventsub/subscriptions'
+
+/*----- simple cURL command to delete subscriptions -----*/
+
+    curl -X DELETE 'https://api.twitch.tv/helix/eventsub/subscriptions?id=df890ecf-1563-4df7-9dbb-872dafafdafd' \
+    -H 'Authorization: Bearer <auth_token>' \
+    -H 'Client-Id: <client_id>'
+
+/*----- simple cURL command to request subscription for stream.online -----*/
+
+    curl -X POST 'https://api.twitch.tv/helix/eventsub/subscriptions' \
+    -H 'Client-ID: <client_id>' \
+    -H 'Authorization: Bearer <auth_token>'  \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "type": "stream.online",
+      "version": "1",
+      "condition": {
+        "broadcaster_user_id": "<user_id>"
+      },
+      "transport": {
+        "method": "webhook",
+        "callback": "https://pup-chief-mudfish.ngrok-free.app/webhook",
+        "secret": "<eventsub_secret>"
+      }
+    }'
