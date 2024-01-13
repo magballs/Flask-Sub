@@ -1,0 +1,20 @@
+config location:
+/home/pi/.config/ngrok/ngrok.yml
+
+logging location:
+/home/pi/logs/ngrok.log
+log level: info
+
+/*----- ngrok config -----*/
+authtoken: <auth-token>
+version: 2
+tunnels:
+  magballs:
+    proto: http
+    addr: 127.0.0.1:1313
+  flask-app:
+    proto: http
+    addr: 80 # Port for the Flask app
+    hostname: pup-chief-mudfish.ngrok-free.app
+web_addr: 127.0.0.1:1347 # setting the web_addr to access the ngrok dashboard
+/*----- end of ngrok config -----*/
