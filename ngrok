@@ -18,6 +18,6 @@ tunnels:
   flask-app:
     proto: http
     addr: 80 # Port for the Flask app
-    hostname: pup-chief-mudfish.ngrok-free.app
+    hostname: <your-public-domain>
 web_addr: 127.0.0.1:1347 # setting the web_addr to access the ngrok dashboard
 /*----- end of ngrok config -----*/
