@@ -1,0 +1,16 @@
+Defined in webhook_listener.service found @
+/etc/systemd/system/webhook_listener.service
+logging at journalctl -u webhook_listener.service
+
+[Unit]
+Description=Webhook Listener Service
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/.local/bin/gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 --bind 0.0.0.0:5000 webhook_listener:app --log-file=/home/pi/logs/gunicorn.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
