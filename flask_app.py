@@ -1,15 +1,15 @@
 #----- flask app written in python -----#
 
 from flask import Flask, request
-from flask_socketio import SocketIO # is socket io needed at this point?
+#from flask_socketio import SocketIO # Removed for now
 import logging
 import os # pulling in sensitive info from /.bashrc
 from logging.handlers import RotatingFileHandler # log fucking everything!
 import hmac # encoding bullshit - love it!
 import hashlib # 
 
-app = Flask(__name__)
-socketio = SocketIO(app)
+#app = Flask(__name__)
+#socketio = SocketIO(app)
 
 # Twitch EventSub webhook secret:
 webhook_secret = os.environ.get('EVENTSUB_SECRET')
@@ -76,7 +76,7 @@ def webhook():
                 app.logger.info('Received POST request to webhook')
                 # Handle the incoming webhook data
                 data = request.json
-                socketio.emit('twitchevent', data) # What is this used for?
+                #socketio.emit('twitchevent', data) # Removing for now
                 # What processing logic would I use here?
                 return '', 200 # Is this where the invalid signature appears?
             else:
@@ -99,6 +99,6 @@ def webhook():
 
     return 'Invalid request', 400
 
-if __name__ == '__main__':
-        socketio.run(app, host='0.0.0.0', port=5000)
+#if __name__ == '__main__':
+#        socketio.run(app, host='0.0.0.0', port=5000) Removing socketIO at this point in time to focus on issues with valid twitch signature
 #----- End of flask app -----#
