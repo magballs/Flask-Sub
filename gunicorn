@@ -1,17 +1,28 @@
 
-
 /*----- Running as a service on my raspberry -----*/
 13.01.24
   Created a virtual environment, webttv, so the service needs to be modified, but no need for a separate service
 Specifically the ExecStart:
 ExecStart=/path/to/your/virtualenv/bin/gunicorn -w 4 -b 0.0.0.0:5000 webhook_listener:app
 This would be
-ExecStart=/home/pi/ballhook/bin/gunicorn
+WorkingDirectory=/home/pi/ballhook
+ExecStart=/home/pi/ballhook/webttv/bin/gunicorn -w 4 -b 0.0.0.0:5000 flaskhook:app 
 
 Defined in webhook_listener.service found @
 /etc/systemd/system/webhook_listener.service
 logging at journalctl -u webhook_listener.service
 /*----- end of info -----*/
+
+/*----- gunicorn service config 2.0 -----*/
+[Service]
+User=pi
+WorkingDirectory=/home/pi/ballhook
+ExecStart=/home/pi/ballhook/webttv/bin/gunicorn -w 4 -b 0.0.0.0:5000 flaskhook:app  --log-file=/home/pi/logs/gunicorn.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+/*----- end of 2.0 -----*/
 
 /*----- gunicorn / service config -----*/
 [Unit]
