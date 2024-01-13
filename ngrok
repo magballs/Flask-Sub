@@ -1,6 +1,9 @@
 config location:
 /home/pi/.config/ngrok/ngrok.yml
 
+service location:
+/etc/systemd/system/ngrok.service
+
 logging location:
 /home/pi/logs/ngrok.log
 log level: info
