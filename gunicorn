@@ -1,7 +1,11 @@
+/*----- Running as a service on my raspberry -----*/
+
 Defined in webhook_listener.service found @
 /etc/systemd/system/webhook_listener.service
 logging at journalctl -u webhook_listener.service
+/*----- end of info -----*/
 
+/*----- gunicorn / service config -----*/
 [Unit]
 Description=Webhook Listener Service
 After=network.target
@@ -14,3 +18,4 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+/*----- End of gunicorn / service config -----*/
