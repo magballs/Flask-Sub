@@ -8,6 +8,8 @@ from logging.handlers import RotatingFileHandler # log fucking everything!
 import hmac # encoding bullshit - love it!
 import hashlib # 
 
+app = Flask(__name__)
+
 #app = Flask(__name__)
 #socketio = SocketIO(app)
 
